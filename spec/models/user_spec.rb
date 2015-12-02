@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "new user" do
+    it "wont have admin account_type" do
+      expect(User.new.account_type).not_to eq("admin")
+    end
+  end
 end

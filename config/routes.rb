@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin', to: 'admin_dashboard#index'
+
   devise_for :users
   devise_scope :user do
     root to: "devise/sessions#new"
