@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :account_type, presence: true, format: {with: /admin|teacher|student/}
+  validates :account_type, presence: true, 
+            format: {with: /admin|teacher|student/}
 end
