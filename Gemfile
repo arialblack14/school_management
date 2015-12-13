@@ -14,7 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'react-rails', '~> 1.4.0'
 gem 'sprockets-coffee-react'
-gem 'rails-admin'
+gem 'rails_admin'
 
 group :development, :test do
   gem 'byebug'
