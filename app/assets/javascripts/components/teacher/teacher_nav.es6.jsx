@@ -1,4 +1,7 @@
 class TeacherNav extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <nav className="navbar navbar-default">
@@ -8,11 +11,11 @@ class TeacherNav extends React.Component {
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li><a onClick={this.props.changeActiveTab("groups")}>Groups</a></li>
-              <li><a onClick={this.props.changeActiveTab("lessons")}>Lessons</a></li>
-              <li><a onClick={this.props.changeActiveTab("students")}>Students</a></li> 
-              <li><a onClick={this.props.changeActiveTab("events")}>Events</a></li>
-              <li><a onClick={this.props.changeActiveTab("messages")}>Messages</a></li>           
+              <li><a id="groups" onClick={this.props.handleActiveTab}>Groups</a></li>
+              <li><a id="lessons" onClick={this.props.handleActiveTab}>Lessons</a></li>
+              <li><a id="students" onClick={this.props.handleActiveTab}>Students</a></li> 
+              <li><a id="events" onClick={this.props.handleActiveTab}>Events</a></li>
+              <li><a id="messages" onClick={this.props.handleActiveTab}>Messages</a></li>           
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li><a>Signed in as <b>{this.props.currentUser}</b></a></li>
