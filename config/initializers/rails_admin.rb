@@ -6,6 +6,7 @@ RailsAdmin.config do |config|
   config.authenticate_with do
     warden.authenticate! scope: :user
   end
+  config.current_user_method(&:current_user)
   # config.current_user_method(&:current_user)
 
   ## == Cancan ==
@@ -18,7 +19,6 @@ RailsAdmin.config do |config|
   # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
-
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
