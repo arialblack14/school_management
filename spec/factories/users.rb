@@ -4,7 +4,6 @@ FactoryGirl.define do
     last_name "Nowak"
     email "admin@example.com"
     password "password"
-    password_confirmation "password"
     account_type "admin"
   end
   
@@ -13,7 +12,6 @@ FactoryGirl.define do
     last_name "Kowalski"
     email "teacher@example.com"
     password "password"
-    password_confirmation "password"
     account_type "teacher"
   end
 
@@ -22,7 +20,6 @@ FactoryGirl.define do
     last_name "Gall"
     email "student@example.com"
     password "password"
-    password_confirmation "password"
     account_type "student"
   end
 end

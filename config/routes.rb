@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+
+  get 'student_dashboard/index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get 'admin', to: 'admin_dashboard#index'
+  get 'teacher', to: 'teacher_dashboard#index'
+  get 'student', to: 'student_dashboard#index'
 
   devise_for :users
   devise_scope :user do
