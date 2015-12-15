@@ -27,7 +27,8 @@ class TeacherDashboard extends React.Component {
     return (
       <div>
         <div className="row">
-          <TeacherNav currentUser={this.props.currentUser} handleActiveTab={this.changeActiveTab}/>
+          <TeacherNav currentUser={this.props.currentUser} 
+          handleActiveTab={this.changeActiveTab} activeTab={this.state.activeTab}/>
         </div>
         <div className="row">
           {activeTab}

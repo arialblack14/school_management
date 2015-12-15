@@ -2,6 +2,13 @@ class TeacherNav extends React.Component {
   constructor(props) {
     super(props);
   }
+  classes(tab) {
+    if (this.props.activeTab == tab) {
+      return "nav-links active";
+    } else {
+      return "";
+    };
+  }
   render() {
     return (
       <nav className="navbar navbar-default">
@@ -11,11 +18,21 @@ class TeacherNav extends React.Component {
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li><a id="groups" className="nav-links" onClick={this.props.handleActiveTab}>Groups</a></li>
-              <li><a id="lessons" className="nav-links" onClick={this.props.handleActiveTab}>Lessons</a></li>
-              <li><a id="students" className="nav-links" onClick={this.props.handleActiveTab}>Students</a></li> 
-              <li><a id="events" className="nav-links" onClick={this.props.handleActiveTab}>Events</a></li>
-              <li><a id="messages" className="nav-links" onClick={this.props.handleActiveTab}>Messages</a></li>           
+              <li className={this.classes("groups")}>
+                <a id="groups" className="nav-links" onClick={this.props.handleActiveTab}>Groups</a>
+              </li>
+              <li className={this.classes("lessons")}>
+                <a id="lessons" className="nav-links" onClick={this.props.handleActiveTab}>Lessons</a>
+              </li>
+              <li className={this.classes("students")}>
+                <a id="students" className="nav-links" onClick={this.props.handleActiveTab}>Students</a>
+              </li> 
+              <li className={this.classes("events")}>
+                <a id="events" className="nav-links" onClick={this.props.handleActiveTab}>Events</a>
+              </li>
+              <li className={this.classes("messages")}>
+                <a id="messages" className="nav-links" onClick={this.props.handleActiveTab}>Messages</a>
+              </li>           
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li><a>Signed in as <b>{this.props.currentUser}</b></a></li>
