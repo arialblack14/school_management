@@ -1,1 +1,2 @@
-<%= react_component('TeacherDashboard', currentUser: current_user.name) %>
+<%= react_component('TeacherDashboard', currentUser: current_user.name, 
+                    groups: current_user.teacher_groups.as_json) %>
