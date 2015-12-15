@@ -9,17 +9,28 @@ class TeacherDashboard extends React.Component {
     this.setState({activeTab: newState});
   }
   render() {
-    let teacherGroups = <TeacherGroups />
-    let teacherLessons = <TeacherLessons />
-    let teacherStudents = <TeacherStudents />
-    let teacherEvents = <TeacherEvents />
+    let activeTab;
+    switch(this.state.activeTab) {
+      case 'groups':
+        activeTab = <TeacherGroups />;
+        break;
+      case 'lessons':
+        activeTab = <TeacherLessons />;
+        break;
+      case 'students':
+        activeTab = <TeacherStudents />;
+        break;
+      case 'events':
+        activeTab = <TeacherEvents />;
+        break;
+    };
     return (
       <div>
         <div className="row">
           <TeacherNav currentUser={this.props.currentUser} handleActiveTab={this.changeActiveTab}/>
         </div>
         <div className="row">
-          <TeacherGroups />
+          {activeTab}
           <TeacherMessageBox />
         </div>
       </div>
