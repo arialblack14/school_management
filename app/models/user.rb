@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, 
          :trackable, :validatable
+  ## Teachers to group association
+  has_many :teacher_groups, through: :group_teachers, source: :group
+  has_many :group_teachers, foreign_key: :teacher_id
+  ##
   validates :email, presence: true
   validates :password, presence: true
   validates :first_name, presence: true
