@@ -1,4 +1,4 @@
-class TeacherGroups extends React.Component {
+class TeacherGroupList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,7 +12,7 @@ class TeacherGroups extends React.Component {
           </div>
           <ul className="list-group">
             {this.props.groups.map(function(element){
-              return <li className="list-group-item" key={element.id}>{element.name}</li>
+              return <TeacherGroupListItem group={element} key={element.id} />
             })}
           </ul>
         </div>
