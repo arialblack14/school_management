@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   ## Teachers to group association
   has_many :teacher_groups, through: :group_teachers, source: :group
   has_many :group_teachers, foreign_key: :teacher_id
-  ##
+  ## Teachers to lesson association
+  has_many :teacher_lessons, through: :teacher_groups, source: :lessons
+  ## end of freaking associations :D
   validates :email, presence: true
   validates :password, presence: true
   validates :first_name, presence: true
