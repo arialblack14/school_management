@@ -5,4 +5,6 @@ class Group < ActiveRecord::Base
   ## lessons associations
   has_many :group_lessons
   has_many :lessons, through: :group_lessons
+  has_many :events, through: :group_events
+  has_many :group_events
 end
