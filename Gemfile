@@ -15,6 +15,7 @@ gem 'devise'
 gem 'react-rails', '~> 1.4.0'
 gem 'sprockets-coffee-react'
 gem 'rails_admin'
+gem 'mailboxer'
 
 group :development, :test do
   gem 'byebug'

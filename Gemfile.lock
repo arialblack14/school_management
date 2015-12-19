@@ -58,6 +58,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     childprocess (0.5.7)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.2.0)
@@ -91,6 +96,8 @@ GEM
     ffi (1.9.10)
     font-awesome-rails (4.5.0.0)
       railties (>= 3.2, < 5.0)
+    foreigner (1.7.4)
+      activerecord (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -113,6 +120,10 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailboxer (0.13.0)
+      carrierwave (>= 0.5.8)
+      foreigner (>= 0.9.1)
+      rails (>= 3.2.0)
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.1)
@@ -269,6 +280,7 @@ DEPENDENCIES
   factory_girl_rails
   jbuilder (~> 2.0)
   jquery-rails
+  mailboxer
   pg
   rails (= 4.2.4)
   rails-erd
