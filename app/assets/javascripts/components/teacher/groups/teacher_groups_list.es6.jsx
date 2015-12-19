@@ -1,4 +1,4 @@
-class TeacherGroupList extends React.Component {
+class TeacherGroupsList extends React.Component {
   constructor(props) {
     super(props);
   }

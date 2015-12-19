@@ -12,10 +12,10 @@ class TeacherDashboard extends React.Component {
     let activeTab;
     switch(this.state.activeTab) {
       case 'groups':
-        activeTab = <TeacherGroupList currentUser={this.props.currentUser} groups={this.props.groups}/>;
+        activeTab = <TeacherGroupsList currentUser={this.props.currentUser} groups={this.props.groups}/>;
         break;
       case 'lessons':
-        activeTab = <TeacherLessons />;
+        activeTab = <TeacherLessonsList currentUser={this.props.currentUser} lessons={this.props.lessons}/>;
         break;
       case 'students':
         activeTab = <TeacherStudents />;
