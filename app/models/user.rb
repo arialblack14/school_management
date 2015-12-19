@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   has_many :lessons, through: :student_groups
   ## end of freaking associations :D
 
+  ## mailboxer thing
+  acts_as_messageable
+
   ## Validations
   validates :email, presence: true
   validates :password, presence: true
@@ -26,5 +29,9 @@ class User < ActiveRecord::Base
             format: {with: /admin|teacher|student/}
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def mailboxer_email(object)
+    return nil
   end
 end

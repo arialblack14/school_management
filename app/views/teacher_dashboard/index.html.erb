@@ -1,3 +1,4 @@
 <%= react_component('TeacherDashboard', currentUser: current_user.name, 
                     groups: current_user.teacher_groups.as_json,
-                    lessons: current_user.teacher_lessons.as_json) %>
+                    lessons: current_user.teacher_lessons.as_json, 
+                    messages: @serialized_messages.to_a.as_json)%>

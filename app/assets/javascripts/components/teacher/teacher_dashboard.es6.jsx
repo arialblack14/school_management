@@ -32,7 +32,7 @@ class TeacherDashboard extends React.Component {
         </div>
         <div className="row">
           {activeTab}
-          <TeacherMessageBox />
+          <TeacherMessageBox messages={this.props.messages}/>
         </div>
       </div>
     );
