@@ -9,7 +9,7 @@ class TeacherDashboard extends React.Component {
     this.setState({activeTab: newState});
   }
   render() {
-    let activeTab;
+    let activeTab, secondTab;
     switch(this.state.activeTab) {
       case 'groups':
         activeTab = <TeacherGroupsList currentUser={this.props.currentUser} groups={this.props.groups}/>;
@@ -23,6 +23,14 @@ class TeacherDashboard extends React.Component {
       case 'events':
         activeTab = <TeacherEvents />;
         break;
+      case 'messages':
+        activeTab = <TeacherMessages />;
+        break;
+    };
+    if(this.state.activeTab !== 'messages') {
+      secondTab = <TeacherMessageBox messages={this.props.messages}/>;
+    } else {
+      secondTab = "";
     };
     return (
       <div>
@@ -32,7 +40,7 @@ class TeacherDashboard extends React.Component {
         </div>
         <div className="row">
           {activeTab}
-          <TeacherMessageBox messages={this.props.messages}/>
+          {secondTab}
         </div>
       </div>
     );
