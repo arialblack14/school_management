@@ -10,11 +10,12 @@ class TeacherMessageBox extends React.Component {
             <h3 className="panel-title">Recent Messages</h3>
           </div>
           <div className="panel-body">
-            <ul>
-              {this.props.messages.map(function(element) {
-                return <li>{element.subject}</li>
-              })}
-            </ul>
+            {this.props.messages.map(function(element) {
+              return <TeacherMessageListItem 
+                      key={element.conversation.id} 
+                      subject={element.conversation.subject}
+                      message={element.conversation.messages.slice(-1)[0]}/>
+            })}
           </div>
         </div>
       </div>
