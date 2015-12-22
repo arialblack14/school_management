@@ -5,7 +5,7 @@ class TeacherConversations extends React.Component {
   render() {
     return (
       <div>
-        yoyo form conversations
+        yoyo form inbox
       </div>
     )
   }

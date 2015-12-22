@@ -10,7 +10,7 @@ class TeacherMessageListItem extends React.Component {
         </div>
         <div className="panel-body">
           <p>{this.props.message.body}</p>
-          <i><b>Sender: </b>{this.props.message.sender.name}</i>
+          <i><b>{this.props.inbox ? "Sender: " : "Sent to: "}</b>{this.props.message.sender.name}</i>
         </div>
       </div>
     )

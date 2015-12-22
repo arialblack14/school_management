@@ -14,7 +14,8 @@ class TeacherMessageBox extends React.Component {
               return <TeacherMessageListItem 
                       key={element.conversation.id} 
                       subject={element.conversation.subject}
-                      message={element.conversation.messages.slice(-1)[0]}/>
+                      message={element.conversation.messages.slice(-1)[0]}
+                      inbox={true}/>
             })}
           </div>
         </div>
