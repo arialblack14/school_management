@@ -1,6 +1,6 @@
 class TeacherMessageListItem extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
   render() {
     return (
@@ -12,6 +12,7 @@ class TeacherMessageListItem extends React.Component {
           <p>{this.props.message.body}</p>
           <i><b>{this.props.inbox ? "Sender: " : "Sent to: "}</b>
           { this.props.inbox ? this.props.message.sender.name : this.props.message.receivers[0].name}</i>
+          <TeacherMessageReplyForm />
         </div>
       </div>
     )

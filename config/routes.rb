@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   get 'teacher', to: 'teacher_dashboard#index'
   get 'student', to: 'student_dashboard#index'
-
+  post 'send_message', to: 'teacher_dashboard#get_message'
   devise_for :users
   devise_scope :user do
     root to: "devise/sessions#new"
