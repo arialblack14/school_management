@@ -9,10 +9,10 @@ class TeacherMessageListItem extends React.Component {
           <b>{this.props.subject}</b>
         </div>
         <div className="panel-body">
-          <p>{this.props.message.body}</p>
+          <p>{this.props.body}</p>
           <i><b>{this.props.inbox ? "Sender: " : "Sent to: "}</b>
-          { this.props.inbox ? this.props.message.sender.name : this.props.message.receivers[0].name}</i>
-          <TeacherMessageReplyForm />
+          {this.props.sender}</i>
+          <TeacherMessageReplyForm conversationId={this.props.conversationId}/>
         </div>
       </div>
     )

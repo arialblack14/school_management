@@ -18,7 +18,7 @@ class TeacherMessages extends React.Component {
         activeTab = <TeacherSentbox sentbox={this.props.sentbox}/>;
         break;
       case 'conversations':
-        activeTab = <TeacherConversations />;
+        activeTab = <TeacherConversations conversations={this.props.conversations}/>;
         break;
     };
     return (

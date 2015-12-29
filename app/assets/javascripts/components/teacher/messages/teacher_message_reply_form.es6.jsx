@@ -3,21 +3,30 @@ class TeacherMessageReplyForm extends React.Component {
     super(props);
     this.handleReplyForm = this.handleReplyForm.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
-    this.state = {activeForm: false, body: ""};
+    this.state = {activeForm: false, body: "", disabled: true};
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleReplyForm(event) {
     let toggled = !this.state.activeForm;
-    this.setState({activeForm: toggled});
-    event.preventDefault();
+    this.setState({activeForm: toggled, body: ""});
+    (event == undefined) ? false : event.preventDefault();
   }
   handleSubmit(e) {
     e.preventDefault();
-    $.post("/send_message", function(data){
-      console.log(data);
-    });
+    $.post( "/send_message", { conversation: {body: this.state.body, conversation_id: this.props.conversationId}})
+      .done(function( data ) {
+        console.log(data);
+      });
+    this.handleReplyForm();
   }
   handleBodyChange(e) {
-    this.setState({body: e.target.value});
+    let targetValue = e.target.value;
+    this.setState({body: targetValue});
+    if (targetValue.length > 0) {
+      this.setState({disabled: false});
+    } else {
+      this.setState({disabled: true});
+    };
   }
   render() {
     return (
@@ -30,7 +39,7 @@ class TeacherMessageReplyForm extends React.Component {
             <textarea className="form-control" 
             rows="3" placeholder="Type your message..."
             onChange={this.handleBodyChange}></textarea>
-            <button className="btn btn-success" onClick={this.handleSubmit}>Send</button>
+            <button disabled={this.state.disabled} className="btn btn-success" onClick={this.handleSubmit}>Send</button>
             <button className="btn btn-danger" onClick={this.handleReplyForm}>Cancel</button>
           </form>
         </div>
