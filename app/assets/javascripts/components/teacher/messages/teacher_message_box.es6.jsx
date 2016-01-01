@@ -23,7 +23,8 @@ class TeacherMessageBox extends React.Component {
             {this.props.inbox.map(function(element) {
               let receivers = this.extractReceivers(element);
               return <TeacherMessageListItem
-                      key={element.message.id} 
+                      key={element.message.id}
+                      message={element.message}
                       subject={element.message.subject}
                       body={element.message.body}
                       inbox={true}
