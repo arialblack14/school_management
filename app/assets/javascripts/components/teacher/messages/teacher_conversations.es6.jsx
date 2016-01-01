@@ -1,6 +1,14 @@
 class TeacherConversations extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.reverse = this.reverse.bind(this);
+  }
+  reverse(a) {
+    let temp = [];
+    for (let i = a.length - 1; i >=0; i--) {
+      temp.push(a[i]);
+    }
+    return temp;
   }
   render() {
     return (
@@ -11,9 +19,9 @@ class TeacherConversations extends React.Component {
                   key={element.conversation.id}
                   count={element.conversation.messages.length}
                   title={element.conversation.subject}
-                  messages={element.conversation.messages}
+                  messages={this.reverse(element.conversation.messages)}
                   />
-        })}
+        }, this)}
       </div>
     )
   }

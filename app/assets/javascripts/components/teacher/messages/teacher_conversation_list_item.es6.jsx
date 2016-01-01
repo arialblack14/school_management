@@ -1,6 +1,6 @@
 class TeacherConversationListItem extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
   render() {
     return (
@@ -8,13 +8,15 @@ class TeacherConversationListItem extends React.Component {
         <ul className="list-group">
           <li className="list-group-item">
             <span className="badge">{this.props.count}</span>
-            <b>Subject:</b> {this.props.title}
+            <b>Conversation:</b> {this.props.title}
+            <hr />
             {this.props.messages.map(function(element) {
               return <TeacherMessageListItem 
                       key={element.id} 
-                      subject={"yo"}
-                      message={element}
+                      subject={`Re: ${element.subject}`}
+                      body={element.body}
                       inbox={true}
+                      sender={element.sender.name}
                       />
             })}
           </li>
