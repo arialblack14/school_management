@@ -21,7 +21,7 @@ class TeacherSentbox extends React.Component {
                       key={element.message.id} 
                       subject={element.message.subject}
                       body={element.message.body}
-                      inbox={false}
+                      sender={element.message.sender.name}
                       receivers={receivers}
                       />
             }, this)}
