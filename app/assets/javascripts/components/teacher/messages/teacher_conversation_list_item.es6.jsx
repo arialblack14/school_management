@@ -10,11 +10,15 @@ class TeacherConversationListItem extends React.Component {
   }
   render() {
     return (
-      <div onClick={this.handleVisibleTab}>
+      <div>
         <ul className="list-group">
           <li className="list-group-item">
             <span className="badge">{this.props.count}</span>
             <b>Conversation:</b> {this.props.title}
+            <button className="btn btn-sm btn-success conversation-button"
+            onClick={this.handleVisibleTab}>
+            {this.state.visible ? "Hide" : "Show"}
+            </button>
             <div className={this.state.visible ? "" : "hidden"}>
             <hr />
             {this.props.messages.map(function(element) {
