@@ -23,7 +23,7 @@ class TeacherMessageListItem extends React.Component {
           <hr className="message-list-item"/>
           <i>Sender: {this.props.message.sender.name}</i><br/>
           <i>Receiver(s): {this.extractReceivers()}</i>
-          <TeacherMessageReplyForm conversationId={this.props.message.conversationId}/>
+          <TeacherMessageReplyForm conversationId={this.props.message.conversation_id}/>
         </div>
       </div>
     )

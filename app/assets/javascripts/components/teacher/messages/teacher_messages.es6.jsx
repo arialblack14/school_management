@@ -8,6 +8,11 @@ class TeacherMessages extends React.Component {
     let newState = activeTab.currentTarget.id;
     this.setState({activeTab: newState});
   }
+  componentDidMount() {
+    $.get("/get_users").done(function(data) {
+      this.setState({users: data.teacher_dashboard});
+    }.bind(this));
+  }
   render() {
     let activeTab;
     switch(this.state.activeTab) {
@@ -19,6 +24,9 @@ class TeacherMessages extends React.Component {
         break;
       case 'conversations':
         activeTab = <TeacherConversations conversations={this.props.conversations}/>;
+        break;
+      case 'new-message':
+        activeTab = <TeacherNewMessage currentUserId={this.props.currentUserId}users={this.state.users}/>
         break;
     };
     return (
@@ -33,6 +41,9 @@ class TeacherMessages extends React.Component {
           <li id="conversations"
           className={this.state.activeTab == "conversations" ? "active nav-links" : "nav-links"} 
           onClick={this.changeActiveTab}><a>Conversations</a></li>
+          <li id="new-message"
+          className={this.state.activeTab == "new-message" ? "active nav-links" : "nav-links"} 
+          onClick={this.changeActiveTab}><a>Compose new message</a></li>
         </ul>
         {activeTab}
       </div>
