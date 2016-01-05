@@ -3,11 +3,9 @@ class TeacherNewMessage extends React.Component {
     super(props);
     this.handleSubject = this.handleSubject.bind(this);
     this.handleBody = this.handleBody.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleReceiver = this.handleReceiver.bind(this);
-
+    this.changeReceiver = this.changeReceiver.bind(this);
     // form initial state
-    this.state = {subject: "", body: "", receiver: ""};
+    this.state = {subject: "", body: "", receiver: "", multiReceivers: false};
   }
   handleSubject(event) {
     let subject = event.target.value;
@@ -17,20 +15,12 @@ class TeacherNewMessage extends React.Component {
     let body = event.target.value;
     this.setState({body: body});
   }
-  handleReceiver(e) {
-    let receiver = e.target.value;
-    this.setState({receiver: receiver})
-  }
-  handleSubmit(e) {
-    e.preventDefault();
-    $.post( "/send_new_message", { conversation: {sender_id: this.props.currentUserId,
-                                                  receiver_id: this.state.receiver,
-                                                  subject: this.state.subject,
-                                                  body: this.state.body}})
-      .done(function( data ) {
-        console.log(data);
-      });
-    this.setState({subject: "", body: "", receiver: ""});
+  changeReceiver(e) {
+    if(e.target.value == "single") {
+      this.setState({multiReceivers: false});
+    } else {
+      this.setState({multiReceivers: true});
+    }
   }
   render() {
     return (
@@ -49,23 +39,21 @@ class TeacherNewMessage extends React.Component {
           </div>
           <div className="checkbox">
           <label className="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
+            <input type="radio" checked={!this.state.multiReceivers} onChange={this.changeReceiver} name="inlineRadioOptions" id="inlineRadio1" value="single"/>
             Single receiver
           </label>
           <label className="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"/>
+            <input type="radio" onChange={this.changeReceiver} name="inlineRadioOptions" id="inlineRadio2" value="multi"/>
             Multiple receivers
           </label>
           </div>
-          <div className="col-md-6">
-            <select className="form-control" onChange={this.handleReceiver}>
-              <option value="">Select receiver</option>
-              {this.props.users.map(function(element){
-                return (<option key={element.id} value={element.id}>{element.email}</option>)
-              }, this)}
-            </select>
-          </div>
-          <button type="submit" className="btn btn-default">Submit</button>
+          {!this.state.multiReceivers ? 
+          (<TeacherSingleReceiver users={this.props.users} 
+                                 currentUserId={this.props.currentUserId}
+                                 subject={this.state.subject}
+                                 body={this.state.body}/>) :
+           <TeacherMultiReceiver />
+          }
         </form>
       </div>
     )
