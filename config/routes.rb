@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'student', to: 'student_dashboard#index'
   ## Teacher dashboard
   get 'get_users', to: 'teacher_dashboard#get_users'
+  get 'get_groups', to: 'teacher_dashboard#get_groups'
+  get 'get_lessons', to: 'teacher_dashboard#get_lessons'
   post 'send_message', to: 'teacher_dashboard#reply_to_message'
   post 'send_new_message', to: 'teacher_dashboard#send_new_message'
   ## End

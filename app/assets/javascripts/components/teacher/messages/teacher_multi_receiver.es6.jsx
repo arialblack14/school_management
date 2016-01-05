@@ -9,6 +9,18 @@ class TeacherMultiReceiver extends React.Component {
     this.setState({activeTab: newState});
   }
   render() {
+    let tab;
+    switch(this.state.activeTab) {
+      case "groups":
+        tab = <TeacherMessageGroupList />;
+        break;
+      case "lessons":
+        tab = <TeacherMessageLessonList />;
+        break;
+      case "individual":
+        tab = <TeacherMessageIndividualList />;
+        break;
+    }
     return(
       <div>
         <ul className="nav nav-pills">
@@ -27,6 +39,10 @@ class TeacherMultiReceiver extends React.Component {
             <a id="individual">Individual</a>
           </li>
         </ul>
+        <br/>
+        <div>
+          {tab}
+        </div>
       </div>
     )
   }

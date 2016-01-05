@@ -45,6 +45,16 @@ class TeacherDashboardController < ApplicationController
     render json: users
   end
 
+  def get_groups
+    groups = Group.all
+    render json: groups
+  end
+
+  def get_lessons
+    lessons = Lesson.all
+    render json: lessons
+  end
+
   private
     def conversation_params
       params.require(:conversation).permit(:conversation_id, :body, :sender_id, :receiver_id, :subject)
