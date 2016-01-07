@@ -27,8 +27,10 @@ class TeacherMessageSelectBox extends React.Component {
       case "group":
         if(this.state.groups.length > 0) {
           this.state.groups.map(function(element){
-            listItems.push(<TeacherMessageGroupListItem key={element.id} name={element.name}/>);
-          });
+            listItems.push(<TeacherMessageGroupListItem getItem={this.props.getItem} 
+                            key={element.id} name={element.name} groupId={element.id}
+                            disabledGroups={this.props.disabledGroups}/>);
+          }, this);
           settings = {
             panel: "info", 
             listing: "Group", 
@@ -41,8 +43,10 @@ class TeacherMessageSelectBox extends React.Component {
       case "lesson":
         if(this.state.lessons.length > 0) {
           this.state.lessons.map(function(element){
-            listItems.push(<TeacherMessageLessonListItem key={element.id} name={element.name}/>);
-          });
+            listItems.push(<TeacherMessageLessonListItem getItem={this.props.getItem} 
+                            key={element.id} name={element.name} lessonId={element.id}
+                            disabledLessons={this.props.disabledLessons}/>);
+          }, this);
           settings = {
             panel: "warning", 
             listing: "Lesson", 
@@ -55,8 +59,10 @@ class TeacherMessageSelectBox extends React.Component {
       case "user":
         if(this.state.users.length > 0) {
           this.state.users.map(function(element){
-            listItems.push(<TeacherMessageIndividualListItem key={element.id} name={element.name}/>);
-          });
+            listItems.push(<TeacherMessageIndividualListItem getItem={this.props.getItem} 
+                            key={element.id} name={element.name} userId={element.id}
+                            disabledUsers={this.props.disabledUsers}/>);
+          },this);
           settings = {
             panel: "danger", 
             listing: "User", 
