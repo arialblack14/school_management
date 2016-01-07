@@ -12,13 +12,13 @@ class TeacherMultiReceiver extends React.Component {
     let tab;
     switch(this.state.activeTab) {
       case "groups":
-        tab = <TeacherMessageGroupList />;
+        tab = <TeacherMessageSelectBox activeTab="group"/>;
         break;
       case "lessons":
-        tab = <TeacherMessageLessonList />;
+        tab = <TeacherMessageSelectBox activeTab="lesson"/>;
         break;
       case "individual":
-        tab = <TeacherMessageIndividualList />;
+        tab = <TeacherMessageSelectBox activeTab="user"/>;
         break;
     }
     return(
