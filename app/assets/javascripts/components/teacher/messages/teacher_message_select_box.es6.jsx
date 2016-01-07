@@ -21,6 +21,7 @@ class TeacherMessageSelectBox extends React.Component {
     }.bind(this));
   }
   render() {
+    let settings = {panel: "info", listing: "Group", receivers: "Every student/teacher which is assigned to the group will receive message."};
     let listItems = [];
     switch(this.state.activeTab) {
       case "group":
@@ -28,6 +29,11 @@ class TeacherMessageSelectBox extends React.Component {
           this.state.groups.map(function(element){
             listItems.push(<TeacherMessageGroupListItem key={element.id} name={element.name}/>);
           });
+          settings = {
+            panel: "info", 
+            listing: "Group", 
+            receivers: "Every student/teacher which is assigned to the group will receive message."
+          };
         } else {
           listItems = <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>;
         };
@@ -37,6 +43,11 @@ class TeacherMessageSelectBox extends React.Component {
           this.state.lessons.map(function(element){
             listItems.push(<TeacherMessageLessonListItem key={element.id} name={element.name}/>);
           });
+          settings = {
+            panel: "warning", 
+            listing: "Lesson", 
+            receivers: "Every student/teacher which is assigned to the lesson will receive message."
+          };
         } else {
           listItems = <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>;
         };
@@ -46,6 +57,11 @@ class TeacherMessageSelectBox extends React.Component {
           this.state.users.map(function(element){
             listItems.push(<TeacherMessageIndividualListItem key={element.id} name={element.name}/>);
           });
+          settings = {
+            panel: "danger", 
+            listing: "User", 
+            receivers: "Pick user(s)."
+          };
         } else {
           listItems = <span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>;
         };
@@ -53,12 +69,12 @@ class TeacherMessageSelectBox extends React.Component {
     }
     return(
       <div className="col-md-6">
-        <div className="panel panel-info">
+        <div className={`panel panel-${settings.panel}`}>
           <div className="panel-heading">
-            <h3 className="panel-title"><b>Group listing</b></h3>
+            <h3 className="panel-title"><b>{settings.listing} listing</b></h3>
           </div>
           <div className="panel-body">
-            <p>Every student/teacher which is assigned to the group will receive message.</p>
+            <p>{settings.receivers}</p>
             <ul className="nav nav-pills">
               {listItems}
             </ul>
