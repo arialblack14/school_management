@@ -46,26 +46,20 @@ class TeacherMultiReceiver extends React.Component {
       let tab;
       switch(this.state.activeTab) {
         case "groups":
-          tab = <TeacherMessageSelectBox groups={this.state.groups} 
-                disabledGroups={this.state.items.groups} 
-                getItem={this.getItem} activeTab="group"/>;
+          tab = <TeacherMessageSelectBox groups={this.state.groups}  
+                getItem={this.getItem} activeTab="group" activeItems={this.state.items}/>;
           break;
         case "lessons":
           tab = <TeacherMessageSelectBox lessons={this.state.lessons}
-                disabledLessons={this.state.items.lessons} 
-                getItem={this.getItem} activeTab="lesson"/>;
+                getItem={this.getItem} activeTab="lesson" activeItems={this.state.items}/>;
           break;
         case "individual":
           tab = <TeacherMessageSelectBox users={this.state.users}
-                disabledUsers={this.state.items.users} 
-                getItem={this.getItem} activeTab="user"/>;
+                getItem={this.getItem} activeTab="user" activeItems={this.state.items}/>;
           break;
       }
       return(
         <div>
-          <TeacherReceiversBox groups={this.state.items.groups} 
-                               users={this.state.items.users} 
-                               lessons={this.state.items.lessons}/>
           <ul className="nav nav-pills">
             <li role="presentation"
               onClick={this.handleActiveTab} 
@@ -85,6 +79,12 @@ class TeacherMultiReceiver extends React.Component {
           <br/>
           <div>
             {tab}
+            <TeacherReceiversBox listedGroups={this.state.items.groups} 
+                               listedUsers={this.state.items.users} 
+                               listedLessons={this.state.items.lessons}
+                               groups={this.state.groups}
+                               lessons={this.state.lessons}
+                               users={this.state.users}/>
           </div>
         </div>
       ) 

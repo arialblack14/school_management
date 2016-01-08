@@ -1,14 +1,53 @@
 class TeacherReceiversBox extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {groups: [], lessons: [], users: [], hidden: true};
   }
-  componentWillReceiveProps() {
-    console.log(this.props);
+  componentWillReceiveProps(nextProps) {
+    let listedItems = {groups: [], lessons: [], users: []}
+    nextProps.groups.map(function(element) {
+      if(nextProps.listedGroups.has(element.id)) {
+        listedItems.groups.push({id: element.id, name: element.name})
+      }
+    }, this);
+    nextProps.lessons.map(function(element) {
+      if(nextProps.listedLessons.has(element.id)) {
+        listedItems.lessons.push({id: element.id, name: element.name})
+      }
+    }, this);
+    nextProps.users.map(function(element) {
+      if(nextProps.listedUsers.has(element.id)) {
+        listedItems.users.push({id: element.id, name: element.name})
+      }
+    }, this);
+    this.setState(listedItems);
+    this.setState({hidden: false})
   }
   render() {
-    for(let group of this.props.groups) console.log(group);
+    let groups =[], lessons = [], users = [];
+    this.state.groups.map(function(element){
+      groups.push(<TeacherMessageReceiverListItem 
+                          key={element.id}
+                          id={element.id} 
+                          name={element.name}
+                          type="group"/>);
+    },this);
+    this.state.lessons.map(function(element){
+      lessons.push(<TeacherMessageReceiverListItem 
+                          key={element.id}
+                          id={element.id} 
+                          name={element.name}
+                          type="lesson"/>);
+    },this);
+    this.state.users.map(function(element){
+      users.push(<TeacherMessageReceiverListItem 
+                          key={element.id}
+                          id={element.id} 
+                          name={element.name}
+                          type="user"/>);
+    },this);
     return(
-      <div className="well well-lg">
+      <div className={this.state.hidden ? "hidden" : "well well-lg"}>
         <table className="table table-condensed">
           <thead>
             <tr>
@@ -16,15 +55,20 @@ class TeacherReceiversBox extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>Groups:</th>
-              <th>Lessons:</th>
-              <th>Users:</th>
+            <tr><th>Groups:</th>
+              <td>
+                {groups}
+              </td>
             </tr>
-            <tr>
-              <td>yo</td>
-              <td>hey</td>
-              <td>asd</td>
+            <tr><th>Lessons:</th>
+              <td>
+                {lessons}
+              </td>
+            </tr>
+            <tr><th>Users:</th>
+              <td>
+                {users}
+              </td>
             </tr>
           </tbody>
         </table>

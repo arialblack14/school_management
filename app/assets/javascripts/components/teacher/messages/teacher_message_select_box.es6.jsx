@@ -13,9 +13,14 @@ class TeacherMessageSelectBox extends React.Component {
       case "group":
         if(this.props.groups.length > 0) {
           this.props.groups.map(function(element){
-            listItems.push(<TeacherMessageGroupListItem getItem={this.props.getItem} 
-                            key={element.id} name={element.name} groupId={element.id}
-                            disabledGroups={this.props.disabledGroups}/>);
+            let disabled = false;
+            if(this.props.activeItems.groups.has(element.id)) {
+              disabled = true;
+            };
+            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.getItem}
+                            id={element.id} type="group" 
+                            key={element.id} name={element.name}
+                            disabled={disabled}/>);
           }, this);
           settings = {
             panel: "info", 
@@ -29,9 +34,14 @@ class TeacherMessageSelectBox extends React.Component {
       case "lesson":
         if(this.props.lessons.length > 0) {
           this.props.lessons.map(function(element){
-            listItems.push(<TeacherMessageLessonListItem getItem={this.props.getItem} 
-                            key={element.id} name={element.name} lessonId={element.id}
-                            disabledLessons={this.props.disabledLessons}/>);
+            let disabled = false;
+            if(this.props.activeItems.lessons.has(element.id)) {
+              disabled = true;
+            };
+            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.getItem}
+                            id={element.id} type="lesson" 
+                            key={element.id} name={element.name}
+                            disabled={disabled}/>);
           }, this);
           settings = {
             panel: "warning", 
@@ -45,9 +55,13 @@ class TeacherMessageSelectBox extends React.Component {
       case "user":
         if(this.props.users.length > 0) {
           this.props.users.map(function(element){
-            listItems.push(<TeacherMessageIndividualListItem getItem={this.props.getItem} 
-                            key={element.id} name={element.name} userId={element.id}
-                            disabledUsers={this.props.disabledUsers}/>);
+            let disabled = false;
+            if(this.props.activeItems.users.has(element.id)) {
+              disabled = true;
+            };
+            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.getItem} 
+                            key={element.id} name={element.name} id={element.id}
+                            type="user" disabled={disabled}/>);
           },this);
           settings = {
             panel: "danger", 
