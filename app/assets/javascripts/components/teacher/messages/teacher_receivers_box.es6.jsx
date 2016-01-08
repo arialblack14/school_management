@@ -6,6 +6,7 @@ class TeacherReceiversBox extends React.Component {
     console.log(this.props);
   }
   render() {
+    for(let group of this.props.groups) console.log(group);
     return(
       <div className="well well-lg">
         <table className="table table-condensed">
@@ -19,6 +20,11 @@ class TeacherReceiversBox extends React.Component {
               <th>Groups:</th>
               <th>Lessons:</th>
               <th>Users:</th>
+            </tr>
+            <tr>
+              <td>yo</td>
+              <td>hey</td>
+              <td>asd</td>
             </tr>
           </tbody>
         </table>

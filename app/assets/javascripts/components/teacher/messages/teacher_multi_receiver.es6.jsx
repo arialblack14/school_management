@@ -1,7 +1,9 @@
 class TeacherMultiReceiver extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {activeTab: "groups", items: {groups: new Set(), lessons: new Set(), users: new Set()}};
+    this.state = {activeTab: "groups", 
+                  items: {groups: new Set(), lessons: new Set(), users: new Set(),
+                  groupsLoaded:false, usersLoaded:false, lessonsLoaded:false}};
     this.handleActiveTab = this.handleActiveTab.bind(this);
     this.getItem = this.getItem.bind(this);
   }
@@ -25,45 +27,71 @@ class TeacherMultiReceiver extends React.Component {
     }
     this.setState({items: items});
   }
+  componentDidMount() {
+    // getting grops
+    $.get("/get_groups").done(function(data){
+      this.setState({groups: data.teacher_dashboard, groupsLoaded: true});
+    }.bind(this));
+    // getting users
+    $.get("/get_users").done(function(data){
+      this.setState({users: data.teacher_dashboard, usersLoaded:true});
+    }.bind(this));
+    // getting lessons
+    $.get("/get_lessons").done(function(data){
+      this.setState({lessons: data.teacher_dashboard, lessonsLoaded:true});
+    }.bind(this));
+  }
   render() {
-    let tab;
-    switch(this.state.activeTab) {
-      case "groups":
-        tab = <TeacherMessageSelectBox disabledGroups={this.state.items.groups} getItem={this.getItem} activeTab="group"/>;
-        break;
-      case "lessons":
-        tab = <TeacherMessageSelectBox disabledLessons={this.state.items.lessons} getItem={this.getItem} activeTab="lesson"/>;
-        break;
-      case "individual":
-        tab = <TeacherMessageSelectBox disabledUsers={this.state.items.users} getItem={this.getItem} activeTab="user"/>;
-        break;
-    }
-    return(
-      <div>
-        <TeacherReceiversBox groups={this.state.items.groups} 
-                             users={this.state.items.users} 
-                             lessons={this.state.items.lessons}/>
-        <ul className="nav nav-pills">
-          <li role="presentation"
-            onClick={this.handleActiveTab} 
-            className={this.state.activeTab == "groups" ? "active nav-links" : "nav-links"}>
-            <a id="groups">Groups</a>
-          </li>
-          <li role="presentation"
-            onClick={this.handleActiveTab}
-            className={this.state.activeTab == "lessons" ? "active nav-links" : "nav-links"}>
-            <a id="lessons">Lessons</a></li>
-          <li role="presentation"
-            onClick={this.handleActiveTab}
-            className={this.state.activeTab == "individual" ? "active nav-links" : "nav-links"}>
-            <a id="individual">Individual</a>
-          </li>
-        </ul>
-        <br/>
+    if(this.state.groupsLoaded && this.state.usersLoaded && this.state.lessonsLoaded) {
+      let tab;
+      switch(this.state.activeTab) {
+        case "groups":
+          tab = <TeacherMessageSelectBox groups={this.state.groups} 
+                disabledGroups={this.state.items.groups} 
+                getItem={this.getItem} activeTab="group"/>;
+          break;
+        case "lessons":
+          tab = <TeacherMessageSelectBox lessons={this.state.lessons}
+                disabledLessons={this.state.items.lessons} 
+                getItem={this.getItem} activeTab="lesson"/>;
+          break;
+        case "individual":
+          tab = <TeacherMessageSelectBox users={this.state.users}
+                disabledUsers={this.state.items.users} 
+                getItem={this.getItem} activeTab="user"/>;
+          break;
+      }
+      return(
         <div>
-          {tab}
+          <TeacherReceiversBox groups={this.state.items.groups} 
+                               users={this.state.items.users} 
+                               lessons={this.state.items.lessons}/>
+          <ul className="nav nav-pills">
+            <li role="presentation"
+              onClick={this.handleActiveTab} 
+              className={this.state.activeTab == "groups" ? "active nav-links" : "nav-links"}>
+              <a id="groups">Groups</a>
+            </li>
+            <li role="presentation"
+              onClick={this.handleActiveTab}
+              className={this.state.activeTab == "lessons" ? "active nav-links" : "nav-links"}>
+              <a id="lessons">Lessons</a></li>
+            <li role="presentation"
+              onClick={this.handleActiveTab}
+              className={this.state.activeTab == "individual" ? "active nav-links" : "nav-links"}>
+              <a id="individual">Individual</a>
+            </li>
+          </ul>
+          <br/>
+          <div>
+            {tab}
+          </div>
         </div>
-      </div>
-    )
+      ) 
+    } else {
+      return (
+        <div><span className="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></div>
+      )
+    }
   }
 }
