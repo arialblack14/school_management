@@ -10,7 +10,7 @@ class TeacherMessageReceiverListItem extends React.Component {
         onClick={this.props.getItem}
         id={this.props.id}
         type={this.props.type}>
-        <a>{this.props.name} <span className="glyphicon glyphicon-plus"/></a>
+        <a>{this.props.name} <span className={`glyphicon glyphicon-${this.props.symbol}`}/></a>
       </li>
     )
   }

@@ -5,13 +5,14 @@ class TeacherMultiReceiver extends React.Component {
                   items: {groups: new Set(), lessons: new Set(), users: new Set(),
                   groupsLoaded:false, usersLoaded:false, lessonsLoaded:false}};
     this.handleActiveTab = this.handleActiveTab.bind(this);
-    this.getItem = this.getItem.bind(this);
+    this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
   }
   handleActiveTab(e) {
     let newState = e.target.id;
     this.setState({activeTab: newState});
   }
-  getItem(e) {
+  addItem(e) {
     let target = e.currentTarget;
     let items = this.state.items;
     switch(target.type) {
@@ -23,6 +24,22 @@ class TeacherMultiReceiver extends React.Component {
         break;
       case "user":
         items.users.add(parseInt(target.id));
+        break;
+    }
+    this.setState({items: items});
+  }
+  removeItem(e) {
+    let target = e.currentTarget;
+    let items = this.state.items;
+    switch(target.type) {
+      case "group":
+        items.groups.delete(parseInt(target.id));
+        break;
+      case "lesson":
+        items.lessons.delete(parseInt(target.id));
+        break;
+      case "user":
+        items.users.delete(parseInt(target.id));
         break;
     }
     this.setState({items: items});
@@ -47,15 +64,15 @@ class TeacherMultiReceiver extends React.Component {
       switch(this.state.activeTab) {
         case "groups":
           tab = <TeacherMessageSelectBox groups={this.state.groups}  
-                getItem={this.getItem} activeTab="group" activeItems={this.state.items}/>;
+                addItem={this.addItem} activeTab="group" activeItems={this.state.items}/>;
           break;
         case "lessons":
           tab = <TeacherMessageSelectBox lessons={this.state.lessons}
-                getItem={this.getItem} activeTab="lesson" activeItems={this.state.items}/>;
+                addItem={this.addItem} activeTab="lesson" activeItems={this.state.items}/>;
           break;
         case "individual":
           tab = <TeacherMessageSelectBox users={this.state.users}
-                getItem={this.getItem} activeTab="user" activeItems={this.state.items}/>;
+                addItem={this.addItem} activeTab="user" activeItems={this.state.items}/>;
           break;
       }
       return(
@@ -80,11 +97,12 @@ class TeacherMultiReceiver extends React.Component {
           <div>
             {tab}
             <TeacherReceiversBox listedGroups={this.state.items.groups} 
-                               listedUsers={this.state.items.users} 
-                               listedLessons={this.state.items.lessons}
-                               groups={this.state.groups}
-                               lessons={this.state.lessons}
-                               users={this.state.users}/>
+                                 listedUsers={this.state.items.users} 
+                                 listedLessons={this.state.items.lessons}
+                                 groups={this.state.groups}
+                                 lessons={this.state.lessons}
+                                 users={this.state.users}
+                                 removeItem={this.removeItem}/>
           </div>
         </div>
       ) 

@@ -30,21 +30,27 @@ class TeacherReceiversBox extends React.Component {
                           key={element.id}
                           id={element.id} 
                           name={element.name}
-                          type="group"/>);
+                          type="group"
+                          symbol="minus"
+                          getItem={this.props.removeItem}/>);
     },this);
     this.state.lessons.map(function(element){
       lessons.push(<TeacherMessageReceiverListItem 
                           key={element.id}
                           id={element.id} 
                           name={element.name}
-                          type="lesson"/>);
+                          type="lesson"
+                          symbol="minus"
+                          getItem={this.props.removeItem}/>);
     },this);
     this.state.users.map(function(element){
       users.push(<TeacherMessageReceiverListItem 
                           key={element.id}
                           id={element.id} 
                           name={element.name}
-                          type="user"/>);
+                          type="user"
+                          symbol="minus"
+                          getItem={this.props.removeItem}/>);
     },this);
     return(
       <div className={this.state.hidden ? "hidden" : "well well-lg"}>

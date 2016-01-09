@@ -17,10 +17,10 @@ class TeacherMessageSelectBox extends React.Component {
             if(this.props.activeItems.groups.has(element.id)) {
               disabled = true;
             };
-            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.getItem}
+            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.addItem}
                             id={element.id} type="group" 
                             key={element.id} name={element.name}
-                            disabled={disabled}/>);
+                            disabled={disabled} symbol="plus"/>);
           }, this);
           settings = {
             panel: "info", 
@@ -38,10 +38,10 @@ class TeacherMessageSelectBox extends React.Component {
             if(this.props.activeItems.lessons.has(element.id)) {
               disabled = true;
             };
-            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.getItem}
+            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.addItem}
                             id={element.id} type="lesson" 
                             key={element.id} name={element.name}
-                            disabled={disabled}/>);
+                            disabled={disabled} symbol="plus"/>);
           }, this);
           settings = {
             panel: "warning", 
@@ -59,9 +59,9 @@ class TeacherMessageSelectBox extends React.Component {
             if(this.props.activeItems.users.has(element.id)) {
               disabled = true;
             };
-            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.getItem} 
+            listItems.push(<TeacherMessageReceiverListItem getItem={this.props.addItem} 
                             key={element.id} name={element.name} id={element.id}
-                            type="user" disabled={disabled}/>);
+                            type="user" disabled={disabled} symbol="plus"/>);
           },this);
           settings = {
             panel: "danger", 
