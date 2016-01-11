@@ -17,6 +17,7 @@ gem 'sprockets-coffee-react'
 gem 'rails_admin'
 gem 'mailboxer'
 gem 'active_model_serializers'
+gem 'ffaker'
 
 group :development, :test do
   gem 'byebug'
