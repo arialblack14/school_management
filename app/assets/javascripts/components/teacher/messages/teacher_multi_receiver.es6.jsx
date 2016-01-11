@@ -7,6 +7,7 @@ class TeacherMultiReceiver extends React.Component {
     this.handleActiveTab = this.handleActiveTab.bind(this);
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleActiveTab(e) {
     let newState = e.target.id;
@@ -58,6 +59,22 @@ class TeacherMultiReceiver extends React.Component {
       this.setState({lessons: data.teacher_dashboard, lessonsLoaded:true});
     }.bind(this));
   }
+  handleSubmit(e) {
+    e.preventDefault();
+    let message = {conversation: {
+                    subject: this.props.subject,
+                    body: this.props.body,
+                    sender_id: this.props.currentUserId,
+                    receivers: {
+                      groups: Array.from(this.state.items.groups),
+                      lessons: Array.from(this.state.items.lessons),
+                      users: Array.from(this.state.items.users)
+                    }}};
+    $.post('/send_new_broadcast_message', message)
+      .done(function(data){
+        console.log(data); 
+      });
+  }
   render() {
     if(this.state.groupsLoaded && this.state.usersLoaded && this.state.lessonsLoaded) {
       let tab;
@@ -102,7 +119,8 @@ class TeacherMultiReceiver extends React.Component {
                                  groups={this.state.groups}
                                  lessons={this.state.lessons}
                                  users={this.state.users}
-                                 removeItem={this.removeItem}/>
+                                 removeItem={this.removeItem}
+                                 submitForm={this.handleSubmit}/>
           </div>
         </div>
       ) 

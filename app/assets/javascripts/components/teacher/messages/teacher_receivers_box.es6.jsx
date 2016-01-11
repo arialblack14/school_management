@@ -21,7 +21,11 @@ class TeacherReceiversBox extends React.Component {
       }
     }, this);
     this.setState(listedItems);
-    this.setState({hidden: false})
+    if(listedItems.groups.length > 0 || listedItems.lessons.length > 0 || listedItems.users.length > 0) {
+      this.setState({hidden: false});
+    } else {
+      this.setState({hidden: true});
+    };
   }
   render() {
     let groups =[], lessons = [], users = [];
@@ -78,6 +82,7 @@ class TeacherReceiversBox extends React.Component {
             </tr>
           </tbody>
         </table>
+        <button className="btn btn-success" onClick={this.props.submitForm}>Submit</button>
       </div>
     )
   }

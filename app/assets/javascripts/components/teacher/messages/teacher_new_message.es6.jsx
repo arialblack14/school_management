@@ -52,7 +52,9 @@ class TeacherNewMessage extends React.Component {
                                  currentUserId={this.props.currentUserId}
                                  subject={this.state.subject}
                                  body={this.state.body}/>) :
-           <TeacherMultiReceiver />
+           <TeacherMultiReceiver currentUserId={this.props.currentUserId}
+                                 subject={this.state.subject}
+                                 body={this.state.body}/>
           }
         </form>
       </div>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'get_lessons', to: 'teacher_dashboard#get_lessons'
   post 'send_message', to: 'teacher_dashboard#reply_to_message'
   post 'send_new_message', to: 'teacher_dashboard#send_new_message'
+  post 'send_new_broadcast_message', to: 'teacher_dashboard#send_new_broadcast_message'
   ## End
 
   devise_for :users
