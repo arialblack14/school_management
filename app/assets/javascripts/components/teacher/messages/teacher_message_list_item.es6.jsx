@@ -7,7 +7,7 @@ class TeacherMessageListItem extends React.Component {
     let receivers = [];
     this.props.message.receipts.map(function(element) {
       if(element.mailbox_type == "inbox") {
-        receivers.push(element.receiver.name);
+        receivers.push(element.receiver.name + ", ");
       };
     });
     return receivers;
