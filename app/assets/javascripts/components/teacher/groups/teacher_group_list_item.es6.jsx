@@ -15,8 +15,7 @@ class TeacherGroupListItem extends React.Component {
     }
   }
   handleClick() {
-    this.props.getActiveGroupId(this.props.group.id);
-    this.props.getActiveGroup();
+    this.props.getActiveGroup(this.props.group.id);
   }
   render() {
     return (

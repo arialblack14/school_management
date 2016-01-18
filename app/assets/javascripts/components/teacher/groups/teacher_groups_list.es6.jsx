@@ -1,20 +1,18 @@
 class TeacherGroupsList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {activeGroupId: this.props.groups[0].id, groupLoaded: false}
-    this.changeActiveGroupId = this.changeActiveGroupId.bind(this)
+    this.state = {groupLoaded: false}
     this.getGroup = this.getGroup.bind(this);
   }
-  changeActiveGroupId(id) {
-    this.setState({activeGroupId: id});
+  componentWillMount() {
+    this.getGroup(this.props.groups[0].id);
   }
-  componentDidMount() {
-    this.getGroup();
-  }
-  getGroup() {
-    $.get('/get_groups', {group_id: this.state.activeGroupId})
+  getGroup(id) {
+    console.log(this.state)
+    this.setState({groupLoaded: false})
+    $.get('/get_groups', {group_id: id})
       .done(function(data) {
-        this.setState({groupLoaded: true, group: data});
+        this.setState({groupLoaded: true, group: data.group});
       }.bind(this))
   }
   render() {
@@ -32,16 +30,14 @@ class TeacherGroupsList extends React.Component {
                 return <TeacherGroupListItem 
                         group={element}
                         key={element.id}
-                        activeGroupId={this.state.activeGroupId}
-                        getActiveGroupId={this.changeActiveGroupId}
                         getActiveGroup={this.getGroup}
-                        groupLoaded={this.state.groupLoaded}/>
+                        activeGroupId={this.state.groupLoaded ? this.state.group.id : false}/>
               }, this)}
             </ul>
           </div>
         </div>
         <div className="col-md-4">
-          <TeacherGroupInfoList group={this.props.group}/>
+          <TeacherGroupInfoList groupLoaded={this.state.groupLoaded} group={this.state.group}/>
         </div>
       </div>
     )
