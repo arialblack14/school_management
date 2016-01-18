@@ -8,7 +8,6 @@ class TeacherGroupsList extends React.Component {
     this.getGroup(this.props.groups[0].id);
   }
   getGroup(id) {
-    console.log(this.state)
     this.setState({groupLoaded: false})
     $.get('/get_groups', {group_id: id})
       .done(function(data) {
@@ -18,12 +17,11 @@ class TeacherGroupsList extends React.Component {
   render() {
     return (
       <div>
-        <div className="col-md-3 col-sm-4 pull-left">
+        <div className="col-md-2 col-sm-4 pull-left">
           <div className="panel panel-info">
             <div className="panel-heading">Groups</div>
             <div className="panel-body">
-              <p>Hello {this.props.currentUser}, here you can see groups you're assinged in. 
-              Click on each if you want to see more info.</p>
+              <p>Click on each if you want to see more info.</p>
             </div>
             <ul className="list-group">
               {this.props.groups.map(function(element){
@@ -36,7 +34,7 @@ class TeacherGroupsList extends React.Component {
             </ul>
           </div>
         </div>
-        <div className="col-md-4">
+        <div className="col-md-5">
           <TeacherGroupInfoList groupLoaded={this.state.groupLoaded} group={this.state.group}/>
         </div>
       </div>
