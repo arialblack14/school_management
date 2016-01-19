@@ -1,7 +1,8 @@
 class TeacherGroupInfoList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {groupReceived: false}
+    this.state = {groupReceived: false, activeTab: "lessonDates"}
+    this.changeActiveTab = this.changeActiveTab.bind(this)
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.groupLoaded) {
@@ -9,6 +10,10 @@ class TeacherGroupInfoList extends React.Component {
     } else {
       this.setState({groupReceived: false})
     }
+  }
+  changeActiveTab(e) {
+    let newTab = e.target.id;
+    this.setState({activeTab: newTab})
   }
   render() {
     return(
@@ -24,13 +29,28 @@ class TeacherGroupInfoList extends React.Component {
               <tr><th>Group name: {this.state.group.name}</th></tr>
             </thead>
             <tbody>
-              {this.state.group.lessons.map(function(element) {
+              <tr>
+                <td>
+                  <button onClick={this.changeActiveTab} 
+                      className="btn btn-warning"
+                      id="lessonDates">Dates:
+                  </button>
+                 <button onClick={this.changeActiveTab}
+                         className="btn btn-success"
+                         id="studentList">Students:
+                  </button>
+                </td>
+              </tr>
+              {this.state.group.lessons.map(function(element, index) {
                 return <tr>
                          <td>
                            <b>{element.name}</b><br/>
-                           <button className="btn btn-warning">Dates:</button>
-                           <button className="btn btn-primary">Students:</button>
-                           <button className="btn btn-danger">Events:</button>
+                           <TeacherLessonDatesList key={element.id} 
+                                                   activeTab={this.state.activeTab}
+                                                   lessonDates={element.lesson_dates}/>
+                           <TeacherStudentsList
+                                                   activeTab={this.state.activeTab}
+                                                   />
                           </td>
                         </tr>
               }, this)}
