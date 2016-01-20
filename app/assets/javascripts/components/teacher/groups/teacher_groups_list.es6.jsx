@@ -5,7 +5,9 @@ class TeacherGroupsList extends React.Component {
     this.getGroup = this.getGroup.bind(this);
   }
   componentWillMount() {
-    this.getGroup(this.props.groups[0].id);
+    if(this.props.groups.length > 0) {
+      this.getGroup(this.props.groups[0].id);
+    }
   }
   getGroup(id) {
     this.setState({groupLoaded: false})

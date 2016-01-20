@@ -14,10 +14,10 @@ class TeacherLessonDatesList extends React.Component {
     let lessonDates = [];
     if(this.props.lessonDates.length > 0) {
       this.props.lessonDates.map(function(element) {
-        lessonDates.push(<TeacherLessonDatesListItem lessonDate={element}/>)
+        lessonDates.push(<TeacherLessonDatesListItem key={element.id} lessonDate={element}/>)
       }, this)
     } else {
-      lessonDates.push(<li className="list-group-item">No dates</li>)
+      lessonDates.push(<li key={1} className="list-group-item">No dates</li>)
     }
     return(
       <div className={this.state.visible ? "" : "hidden"}>

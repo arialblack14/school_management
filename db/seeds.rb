@@ -46,10 +46,10 @@ u.send_message(users, "I just wanna say hello :)", "Announcement")
 
 ## Associations
 
-## Teacher-Group
+## Teacher-Lesson
 teachers = User.where(account_type: "teacher")
 teachers.each do |t|
-  GroupTeacher.create(teacher_id: t.id, group_id: rand(1..5))
+  TeacherLesson.create(teacher_id: t.id, lesson_id: rand(1..10))
 end
 ## Group-lesson
 10.times do |i|

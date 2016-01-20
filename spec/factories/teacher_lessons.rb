@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :group_lesson do
+  factory :teacher_lesson do
+    teacher_id 2
     lesson_id 1
-    group_id 1
   end
 
 end

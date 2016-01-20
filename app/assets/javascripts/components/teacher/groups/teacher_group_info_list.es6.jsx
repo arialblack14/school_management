@@ -41,16 +41,16 @@ class TeacherGroupInfoList extends React.Component {
                   </button>
                 </td>
               </tr>
-              {this.state.group.lessons.map(function(element, index) {
-                return <tr>
+              {this.state.group.lessons.map(function(element) {
+                return <tr key={element.id}>
                          <td>
                            <b>{element.name}</b><br/>
-                           <TeacherLessonDatesList key={element.id} 
+                           <TeacherLessonDatesList 
                                                    activeTab={this.state.activeTab}
                                                    lessonDates={element.lesson_dates}/>
-                           <TeacherStudentsList
+                           <TeacherStudentsList    
                                                    activeTab={this.state.activeTab}
-                                                   />
+                                                   students={element.students}/>
                           </td>
                         </tr>
               }, this)}

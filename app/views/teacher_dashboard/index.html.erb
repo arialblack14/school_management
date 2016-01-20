@@ -1,7 +1,8 @@
 <%= react_component('TeacherDashboard', currentUser: current_user.name,
-                    currentUserId: current_user.id, 
-                    groups: current_user.teacher_groups.as_json,
-                    lessons: current_user.teacher_lessons.as_json, 
+                    currentUserId: current_user.id,
+                    groups: current_user.groups_teacher.as_json,
+                    test: @groups,
+                    lessons: current_user.lessons.as_json, 
                     inbox: @inbox,
                     sentbox: @sentbox,
                     conversations: @conversations)%>

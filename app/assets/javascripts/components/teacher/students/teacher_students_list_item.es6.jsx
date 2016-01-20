@@ -5,7 +5,7 @@ class TeacherStudentsListItem extends React.Component {
   render() {
     return(
       <div>
-        <li className="list-group-item">hello from student li</li>
+        <li className="list-group-item">{this.props.student.name}</li>
       </div>
     )
   }

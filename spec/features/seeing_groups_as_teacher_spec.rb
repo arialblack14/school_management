@@ -2,9 +2,11 @@ feature "Teacher logs in", js: true do
   scenario "and sees proper groups" do
     teacher = FactoryGirl.create(:teacher)
     group = FactoryGirl.create(:group, name: "1k412")
-    FactoryGirl.create(:group_teacher, 
+    group_lesson = FactoryGirl.create(:group_lesson)
+    lesson = FactoryGirl.create(:lesson)
+    FactoryGirl.create(:teacher_lesson, 
                        teacher_id: teacher.id, 
-                       group_id: group.id)
+                       lesson_id: lesson.id)
     login_as teacher
     expect(page).to have_content group.name
   end

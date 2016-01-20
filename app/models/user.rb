@@ -5,16 +5,16 @@ class User < ActiveRecord::Base
          :trackable, :validatable
 
   ## Teachers to group association
-  has_many :teacher_groups, through: :group_teachers, source: :group
-  has_many :group_teachers, foreign_key: :teacher_id
-
+  has_many :teacher_groups, through: :teacher_lessons, source: :lesson
+  has_many :groups_teacher, through: :teacher_groups, source: :groups
   ## Teachers to lesson association
-  has_many :teacher_lessons, through: :teacher_groups, source: :lessons
+  has_many :teacher_lessons, foreign_key: :teacher_id
+  has_many :lessons, through: :teacher_lessons
 
   ## Students to group/teacher/lesson association
   has_many :student_groups, through: :group_students, source: :group
   has_many :group_students, foreign_key: :student_id
-  has_many :lessons, through: :student_groups
+  has_many :student_lessons, through: :student_groups, source: :lesson
   ## end of freaking associations :D
 
   ## mailboxer thing

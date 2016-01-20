@@ -11,10 +11,19 @@ class TeacherStudentsList extends React.Component {
     }
   }
   render() {
+    let students = []
+    if(this.props.students.length > 0) {
+      this.props.students.map(function(element) {
+        students.push(<TeacherStudentsListItem key={element.id} student={element} />)
+      }, this)
+    } else {
+      students.push(<li className="list-group-item">No students.</li>)
+    }
     return(
       <div className={this.state.visible ? "" : "hidden"}>
+        <button className="btn btn-info">Add grades</button>
         <ul className="list-group">
-          <TeacherStudentsListItem />
+          {students}
         </ul>
       </div>
     )
