@@ -46,16 +46,16 @@ u.send_message(users, "I just wanna say hello :)", "Announcement")
 
 ## Associations
 
-## Teacher-Lesson
+## Teacher-Lesson, each teacher with one lesson.
 teachers = User.where(account_type: "teacher")
 teachers.each do |t|
   TeacherLesson.create(teacher_id: t.id, lesson_id: rand(1..10))
 end
-## Group-lesson
+## Group-lesson, each lesson at least one group.
 10.times do |i|
   GroupLesson.create(lesson_id: i, group_id: rand(1..5))
 end
-## Student-group
+## Student-group, each student one group.
 students = User.where(account_type: "student")
 students.each do |s|
   GroupStudent.create(student_id: s.id, group_id: rand(1..5))

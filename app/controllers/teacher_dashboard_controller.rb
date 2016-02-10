@@ -2,7 +2,6 @@ class TeacherDashboardController < ApplicationController
   def index
     @inbox = []
     @sentbox = []
-    @groups = []
     current_user.mailbox.inbox.map do |c|
       c.messages.map do |m|
         @inbox.push(m) if m.sender.id != current_user.id
@@ -14,13 +13,6 @@ class TeacherDashboardController < ApplicationController
         @sentbox.push(m) if m.sender.id == current_user.id
       end
     end
-    
-    current_user.lessons.map do |l|
-      l.groups.map do |g|
-        @groups.push(g)
-      end
-    end
-    @groups = @groups.map { |g| GroupSerializer.new(g).as_json }
     @inbox = @inbox.map {|m| MessageSerializer.new(m).as_json }
     @sentbox = @sentbox.map {|m| MessageSerializer.new(m).as_json }
     @conversations = current_user.mailbox.conversations.map { |c| ConversationSerializer.new(c) }.as_json
