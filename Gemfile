@@ -33,6 +33,7 @@ group :development do
   gem 'spring'
   gem "rails-erd"
   gem "meta_request"
+  gem "bullet"
 end
 
 group :production do
