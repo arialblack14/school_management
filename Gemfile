@@ -32,6 +32,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem "rails-erd"
+  gem "meta_request"
 end
 
 group :production do
