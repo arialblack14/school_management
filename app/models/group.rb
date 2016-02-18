@@ -8,6 +8,5 @@ class Group < ActiveRecord::Base
   has_many :events, through: :group_events
   has_many :group_events
   ## teachers associations
-  has_many :group_teachers
-  has_many :teachers, through: :group_teachers, class_name: 'User'
+  has_many :teachers, through: :lessons
 end

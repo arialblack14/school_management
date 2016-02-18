@@ -4,15 +4,16 @@ class TeacherGroupsList extends React.Component {
     this.state = {groupLoaded: false}
     this.getGroup = this.getGroup.bind(this);
   }
-  componentWillMount() {
+  componentDidMount() {
     if(this.props.groups.length > 0) {
       this.getGroup(this.props.groups[0].id);
     }
   }
   getGroup(id) {
     this.setState({groupLoaded: false})
-    $.get('/get_groups', {group_id: id})
+    $.get('/get_teacher_groups', {group_id: id})
       .done(function(data) {
+        console.log(data)
         this.setState({groupLoaded: true, group: data.group});
       }.bind(this))
   }

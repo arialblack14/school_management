@@ -47,7 +47,7 @@ class TeacherMultiReceiver extends React.Component {
   }
   componentDidMount() {
     // getting grops
-    $.get("/get_groups").done(function(data){
+    $.get("/get_teacher_groups").done(function(data){
       this.setState({groups: data.teacher_dashboard, groupsLoaded: true});
     }.bind(this));
     // getting users

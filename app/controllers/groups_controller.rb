@@ -1,10 +1,10 @@
 class GroupsController < ApplicationController
-  def get_groups
+  def get_teacher_groups
     if params[:group_id].present?
       group = Group.find(params[:group_id])
       render json: group
     else
-      groups = Group.all
+      groups = current_user.groups_teacher.includes(:lessons)
       render json: groups
     end
   end
