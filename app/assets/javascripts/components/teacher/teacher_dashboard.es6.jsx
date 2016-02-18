@@ -1,21 +1,32 @@
 class TeacherDashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {activeTab: "groups"};
+    this.state = {activeTab: "groups", groups: [], lessons: [], inbox: [], sentbox: [], conversations: []};
     this.changeActiveTab = this.changeActiveTab.bind(this);
+    this.getLessons = this.getLessons.bind(this);
   }
   changeActiveTab(activeTab) {
     let newState = activeTab.target.id;
     this.setState({activeTab: newState});
   }
+  getLessons() {
+    $.get('/get_lessons')
+      .done(function(result) {
+        
+      }.bind(this));
+  }
+  componentDidMount() {
+    this.getLessons();
+  }
   render() {
     let activeTab, secondTab;
     switch(this.state.activeTab) {
       case 'groups':
-        activeTab = <TeacherGroupsList currentUser={this.props.currentUser} groups={this.props.groups}/>;
+        activeTab = <TeacherGroupsList currentUser={this.props.currentUser} groups={this.state.groups}/>;
         break;
       case 'lessons':
-        activeTab = <TeacherLessonsList currentUser={this.props.currentUser} lessons={this.props.lessons}/>;
+        //to be dumped
+        activeTab = <TeacherLessonsList currentUser={this.props.currentUser} lessons={this.state.lessons}/>;
         break;
       case 'students':
         activeTab = <TeacherStudents />;
@@ -24,11 +35,11 @@ class TeacherDashboard extends React.Component {
         activeTab = <TeacherEvents />;
         break;
       case 'messages':
-        activeTab = <TeacherMessages currentUserId={this.props.currentUserId} inbox={this.props.inbox} sentbox={this.props.sentbox} conversations={this.props.conversations}/>;
+        activeTab = <TeacherMessages currentUserId={this.props.currentUserId} inbox={this.state.inbox} sentbox={this.state.sentbox} conversations={this.state.conversations}/>;
         break;
     };
     if(this.state.activeTab !== 'messages') {
-      secondTab = <TeacherMessageBox currentUserId={this.props.currentUserId} inbox={this.props.inbox}/>;
+      secondTab = <TeacherMessageBox currentUserId={this.props.currentUserId} inbox={this.state.inbox}/>;
     } else {
       secondTab = "";
     };

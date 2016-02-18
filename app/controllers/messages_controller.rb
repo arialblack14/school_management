@@ -1,4 +1,8 @@
 class MessagesController < ApplicationController
+
+  def get_inbox
+    
+  end
   
   def reply_to_message
     body = conversation_params[:body]
