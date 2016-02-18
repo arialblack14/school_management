@@ -4,6 +4,7 @@ class TeacherDashboard extends React.Component {
     this.state = {activeTab: "groups", groups: [], lessons: [], inbox: [], sentbox: [], conversations: []};
     this.changeActiveTab = this.changeActiveTab.bind(this);
     this.getLessons = this.getLessons.bind(this);
+    this.extractGroups = this.extractGroups.bind(this);
   }
   changeActiveTab(activeTab) {
     let newState = activeTab.target.id;
@@ -12,11 +13,20 @@ class TeacherDashboard extends React.Component {
   getLessons() {
     $.get('/get_lessons')
       .done(function(result) {
-        
+        this.setState({groups: this.extractGroups(result.lessons)})
       }.bind(this));
   }
   componentDidMount() {
     this.getLessons();
+  }
+  extractGroups(lessons) {
+    let groups = [];
+    lessons.map(function(element) {
+      element.groups.map(function(element){
+        groups.push(element);
+      });
+    });
+    return groups;
   }
   render() {
     let activeTab, secondTab;

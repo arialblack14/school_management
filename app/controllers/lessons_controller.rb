@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
   def get_lessons
-    render json: current_user.lessons
+    lessons = current_user.lessons.includes(:groups)
+    render json: lessons
   end
 end
