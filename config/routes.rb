@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   get 'get_users', to: 'teacher_dashboard#get_users'
   get 'get_groups', to: 'teacher_dashboard#get_groups'
   get 'get_lessons', to: 'teacher_dashboard#get_lessons'
-  post 'send_message', to: 'teacher_dashboard#reply_to_message'
-  post 'send_new_message', to: 'teacher_dashboard#send_new_message'
-  post 'send_new_broadcast_message', to: 'teacher_dashboard#send_new_broadcast_message'
+  post 'send_message', to: 'messages#reply_to_message'
+  post 'send_new_message', to: 'messages#send_new_message'
+  post 'send_new_broadcast_message', to: 'messages#send_new_broadcast_message'
   ## End
 
   devise_for :users
