@@ -21,12 +21,6 @@ class TeacherNav extends React.Component {
               <li className={this.classes("groups")}>
                 <a id="groups" className="nav-links" onClick={this.props.handleActiveTab}>Groups</a>
               </li>
-              <li className={this.classes("lessons")}>
-                <a id="lessons" className="nav-links" onClick={this.props.handleActiveTab}>Lessons</a>
-              </li>
-              <li className={this.classes("students")}>
-                <a id="students" className="nav-links" onClick={this.props.handleActiveTab}>Students</a>
-              </li> 
               <li className={this.classes("events")}>
                 <a id="events" className="nav-links" onClick={this.props.handleActiveTab}>Events</a>
               </li>
