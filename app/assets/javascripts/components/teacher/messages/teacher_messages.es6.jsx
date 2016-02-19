@@ -22,9 +22,6 @@ class TeacherMessages extends React.Component {
       case 'sentbox':
         activeTab = <TeacherSentbox sentbox={this.props.sentbox}/>;
         break;
-      case 'conversations':
-        activeTab = <TeacherConversations conversations={this.props.conversations}/>;
-        break;
       case 'new-message':
         activeTab = <TeacherNewMessage currentUserId={this.props.currentUserId}users={this.state.users}/>
         break;
@@ -38,9 +35,6 @@ class TeacherMessages extends React.Component {
           <li id="sentbox"
           className={this.state.activeTab == "sentbox" ? "active nav-links" : "nav-links"} 
           onClick={this.changeActiveTab}><a>Sentbox</a></li>
-          <li id="conversations"
-          className={this.state.activeTab == "conversations" ? "active nav-links" : "nav-links"} 
-          onClick={this.changeActiveTab}><a>Conversations</a></li>
           <li id="new-message"
           className={this.state.activeTab == "new-message" ? "active nav-links" : "nav-links"} 
           onClick={this.changeActiveTab}><a>Compose new message</a></li>

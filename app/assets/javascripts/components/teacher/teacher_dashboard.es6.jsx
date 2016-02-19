@@ -43,7 +43,7 @@ class TeacherDashboard extends React.Component {
         activeTab = <TeacherEvents />;
         break;
       case 'messages':
-        activeTab = <TeacherMessages currentUserId={this.props.currentUserId} inbox={this.state.inbox} sentbox={this.state.sentbox} conversations={this.state.conversations}/>;
+        activeTab = <TeacherMessages currentUserId={this.props.currentUserId} inbox={this.state.inbox} sentbox={this.state.sentbox}/>;
         break;
     };
     if(this.state.activeTab !== 'messages') {
