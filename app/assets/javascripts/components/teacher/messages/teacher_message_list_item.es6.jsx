@@ -3,7 +3,7 @@ class TeacherMessageListItem extends React.Component {
     super(props);
     this.extractReceivers = this.extractReceivers.bind(this);
   }
-  extractReceivers() {
+  extractReceivers(receipts) {
     let receivers = [];
     this.props.message.receipts.map(function(element) {
       if(element.mailbox_type == "inbox") {
@@ -12,6 +12,13 @@ class TeacherMessageListItem extends React.Component {
     });
     return receivers;
   }
+  reverse(a) {
+    let temp = [];
+    for (let i = a.length - 1; i >=0; i--) {
+      temp.push(a[i]);
+    }
+    return temp;
+  }
   render() {
     return (
       <div className="panel panel-default"> 
@@ -19,7 +26,7 @@ class TeacherMessageListItem extends React.Component {
           <b>Subject: {this.props.conversation.subject}</b>
         </div>
         <div className="panel-body">
-          {this.props.conversation.messages.map(function(element) {
+          {this.reverse(this.props.conversation.messages).map(function(element) {
             return ( <p key={element.id}>
               <i><b>{element.sender.name}</b></i><br/>
               {element.body}
@@ -27,7 +34,7 @@ class TeacherMessageListItem extends React.Component {
               )
           }, this)}
           <hr className="message-list-item"/>
-          <TeacherMessageReplyForm conversationId={this.props.conversation.conversation_id}/>
+          <TeacherMessageReplyForm conversationId={this.props.conversation.id} getMessages={this.props.getMessages}/>
         </div>
       </div>
     )

@@ -47,7 +47,7 @@ class TeacherDashboard extends React.Component {
         break;
     };
     if(this.state.activeTab !== 'messages') {
-      secondTab = <TeacherMessageBox currentUserId={this.props.currentUserId} inbox={this.state.inbox}/>;
+      secondTab = <TeacherMessageBox currentUserId={this.props.currentUserId} inbox={this.state.inbox} getMessages={this.getMessages}/>;
     } else {
       secondTab = "";
     };

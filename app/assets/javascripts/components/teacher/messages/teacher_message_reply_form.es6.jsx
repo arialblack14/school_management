@@ -16,7 +16,8 @@ class TeacherMessageReplyForm extends React.Component {
     $.post( "/send_message", { conversation: {body: this.state.body, conversation_id: this.props.conversationId}})
       .done(function( data ) {
         console.log(data);
-      });
+        this.props.getMessages();
+      }.bind(this));
     this.handleReplyForm();
   }
   handleBodyChange(e) {
