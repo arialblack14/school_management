@@ -6,8 +6,4 @@ class Lesson < ActiveRecord::Base
   has_many :teachers, through: :teacher_lessons
   has_many :students, through: :groups
   has_many :lesson_dates
-
-  def teacher_ids
-    teachers.pluck(:id)
-  end
 end

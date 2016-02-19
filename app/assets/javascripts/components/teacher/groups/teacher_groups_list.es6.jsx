@@ -4,9 +4,10 @@ class TeacherGroupsList extends React.Component {
     this.state = {groupLoaded: false}
     this.getGroup = this.getGroup.bind(this);
   }
-  componentDidMount() {
-    if(this.props.groups.length > 0) {
-      this.getGroup(this.props.groups[0].id);
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.groups.length > 0) {
+      console.log('hello')
+      this.getGroup(nextProps.groups[0].id);
     }
   }
   getGroup(id) {
