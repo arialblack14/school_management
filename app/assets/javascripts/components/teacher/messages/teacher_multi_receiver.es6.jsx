@@ -48,7 +48,7 @@ class TeacherMultiReceiver extends React.Component {
   componentDidMount() {
     // getting grops
     $.get("/get_teacher_groups").done(function(data){
-      this.setState({groups: data.teacher_dashboard, groupsLoaded: true});
+      this.setState({groups: data.groups, groupsLoaded: true});
     }.bind(this));
     // getting users
     $.get("/get_users").done(function(data){
@@ -56,7 +56,7 @@ class TeacherMultiReceiver extends React.Component {
     }.bind(this));
     // getting lessons
     $.get("/get_lessons").done(function(data){
-      this.setState({lessons: data.teacher_dashboard, lessonsLoaded:true});
+      this.setState({lessons: data.lessons, lessonsLoaded:true});
     }.bind(this));
   }
   handleSubmit(e) {
