@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   post 'send_new_message', to: 'messages#send_new_message'
   post 'send_new_broadcast_message', to: 'messages#send_new_broadcast_message'
   ## End
-
+  # Messages
+  get 'get_inbox', to: 'messages#get_inbox'
   devise_for :users
   devise_scope :user do
     root to: "devise/sessions#new"

@@ -12,8 +12,8 @@ class TeacherMessageBox extends React.Component {
           <div className="panel-body">
             {this.props.inbox.map(function(element) {
               return <TeacherMessageListItem
-                      key={element.message.id}
-                      message={element.message}
+                      key={element.id}
+                      conversation={element}
                       />
             }, this)}
           </div>

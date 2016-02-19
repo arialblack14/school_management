@@ -1,7 +1,8 @@
 class MessagesController < ApplicationController
 
   def get_inbox
-    
+    inbox = current_user.mailbox.inbox
+    render json: inbox
   end
   
   def reply_to_message

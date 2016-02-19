@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
       group = Group.find(params[:group_id])
       render json: group
     else
-      groups = current_user.groups_teacher.includes(:lessons)
+      groups = current_user.groups_teacher
       render json: groups
     end
   end

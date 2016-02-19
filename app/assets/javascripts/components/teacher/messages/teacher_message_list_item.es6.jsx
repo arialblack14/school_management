@@ -16,14 +16,18 @@ class TeacherMessageListItem extends React.Component {
     return (
       <div className="panel panel-default"> 
         <div className="panel-heading">
-          <b>{this.props.message.subject}</b>
+          <b>Subject: {this.props.conversation.subject}</b>
         </div>
         <div className="panel-body">
-          <p>{this.props.message.body}</p>
+          {this.props.conversation.messages.map(function(element) {
+            return ( <p key={element.id}>
+              <i><b>{element.sender.name}</b></i><br/>
+              {element.body}
+              </p>
+              )
+          }, this)}
           <hr className="message-list-item"/>
-          <i>Sender: {this.props.message.sender.name}</i><br/>
-          <i>Receiver(s): {this.extractReceivers()}</i>
-          <TeacherMessageReplyForm conversationId={this.props.message.conversation_id}/>
+          <TeacherMessageReplyForm conversationId={this.props.conversation.conversation_id}/>
         </div>
       </div>
     )

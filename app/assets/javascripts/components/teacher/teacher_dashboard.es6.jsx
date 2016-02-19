@@ -1,9 +1,10 @@
 class TeacherDashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {activeTab: "groups", groups: [], lessons: [], inbox: [], sentbox: [], conversations: []};
+    this.state = {activeTab: "groups", groups: [], inbox: [], sentbox: [], conversations: []};
     this.changeActiveTab = this.changeActiveTab.bind(this);
     this.getGroups = this.getGroups.bind(this);
+    this.getMessages = this.getMessages.bind(this);
   }
   changeActiveTab(activeTab) {
     let newState = activeTab.target.id;
@@ -17,12 +18,19 @@ class TeacherDashboard extends React.Component {
   }
   componentDidMount() {
     this.getGroups();
+    this.getMessages();
+  }
+  getMessages() {
+    $.get('/get_inbox')
+      .done(function(result) {
+        this.setState({inbox: result.messages})
+      }.bind(this));
   }
   render() {
     let activeTab, secondTab;
     switch(this.state.activeTab) {
       case 'groups':
-        activeTab = <TeacherGroupsList currentUser={this.props.currentUser} lessons={this.state.lessons} groups={this.state.groups}/>;
+        activeTab = <TeacherGroupsList currentUser={this.props.currentUser} groups={this.state.groups}/>;
         break;
       case 'lessons':
         //to be dumped
