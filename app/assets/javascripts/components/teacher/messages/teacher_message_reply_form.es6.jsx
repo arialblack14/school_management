@@ -9,13 +9,13 @@ class TeacherMessageReplyForm extends React.Component {
   handleReplyForm(event) {
     let toggled = !this.state.activeForm;
     this.setState({activeForm: toggled, body: ""});
+    $("#message-input").val("");
     (event == undefined) ? false : event.preventDefault();
   }
   handleSubmit(e) {
     e.preventDefault();
     $.post( "/send_message", { conversation: {body: this.state.body, conversation_id: this.props.conversationId}})
       .done(function( data ) {
-        console.log(data);
         this.props.getMessages();
       }.bind(this));
     this.handleReplyForm();
@@ -39,7 +39,7 @@ class TeacherMessageReplyForm extends React.Component {
           <form>
             <textarea className="form-control" 
             rows="3" placeholder="Type your message..."
-            onChange={this.handleBodyChange}></textarea>
+            onChange={this.handleBodyChange} id="message-input"></textarea>
             <button disabled={this.state.disabled} className="btn btn-success" onClick={this.handleSubmit}>Send</button>
             <button className="btn btn-danger" onClick={this.handleReplyForm}>Cancel</button>
           </form>

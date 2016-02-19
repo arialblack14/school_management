@@ -4,6 +4,7 @@ class TeacherMessageListItem extends React.Component {
     this.extractReceivers = this.extractReceivers.bind(this);
   }
   extractReceivers(receipts) {
+    //unused method atm, maybe later
     let receivers = [];
     this.props.message.receipts.map(function(element) {
       if(element.mailbox_type == "inbox") {
