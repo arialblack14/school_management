@@ -1,12 +1,12 @@
 class MessagesController < ApplicationController
 
   def get_inbox
-    inbox = current_user.mailbox.inbox
+    inbox = current_user.mailbox.inbox.includes(messages: [:sender, receipts: [:receiver]])
     render json: inbox
   end
 
   def get_sentbox
-    sentbox = current_user.mailbox.sentbox
+    sentbox = current_user.mailbox.sentbox.includes(messages: [:sender, receipts: [:receiver]])
     render json: sentbox
   end
   
