@@ -3,15 +3,22 @@ class TeacherMessageListItem extends React.Component {
     super(props);
     this.extractReceivers = this.extractReceivers.bind(this);
   }
-  extractReceivers(receipts) {
-    //unused method atm, maybe later
-    let receivers = [];
-    this.props.message.receipts.map(function(element) {
-      if(element.mailbox_type == "inbox") {
-        receivers.push(element.receiver.name + ", ");
-      };
+  extractReceivers() {
+    let receivers = new Set();
+    this.props.conversation.messages.map(function(message) {
+      message.receipts.map(function(receipt) {
+        if(receipt.mailbox_type == "inbox") {
+          receivers.add(receipt.receiver.name + ", ");
+        };
+      });
     });
-    return receivers;
+    let arrayReceivers = Array.from(receivers);
+    if(arrayReceivers.length > 0) {
+      // cutting last ", "
+      let lastItem = arrayReceivers[arrayReceivers.length - 1];
+      arrayReceivers[arrayReceivers.length - 1] = lastItem.substring(0, lastItem.length-2)
+    }
+    return arrayReceivers;
   }
   reverse(a) {
     let temp = [];
@@ -21,6 +28,7 @@ class TeacherMessageListItem extends React.Component {
     return temp;
   }
   render() {
+
     return (
       <div className="panel panel-default"> 
         <div className="panel-heading">
@@ -36,6 +44,10 @@ class TeacherMessageListItem extends React.Component {
           }, this)}
           <hr className="message-list-item"/>
           <TeacherMessageReplyForm conversationId={this.props.conversation.id} getMessages={this.props.getMessages}/>
+          <div className={this.props.isSentbox ? "" : "hidden"}>
+            <br />
+            <b>Receivers:</b> {this.extractReceivers()}
+          </div>
         </div>
       </div>
     )

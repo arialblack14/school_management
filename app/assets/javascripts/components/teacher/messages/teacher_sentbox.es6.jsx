@@ -10,6 +10,7 @@ class TeacherSentbox extends React.Component {
                       key={element.id} 
                       conversation={element}
                       getMessages={this.props.getMessages}
+                      isSentbox={true}
                       />
             }, this)}
         <hr />
