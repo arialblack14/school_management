@@ -9,12 +9,16 @@ Rails.application.routes.draw do
   get 'get_users', to: 'teacher_dashboard#get_users'
   get 'get_teacher_groups', to: 'groups#get_teacher_groups'
   get 'get_lessons', to: 'lessons#get_lessons'
+  ## End
+  
+  # Messages
+  get 'get_inbox', to: 'messages#get_inbox'
+  get 'get_sentbox', to: 'messages#get_sentbox'
   post 'send_message', to: 'messages#reply_to_message'
   post 'send_new_message', to: 'messages#send_new_message'
   post 'send_new_broadcast_message', to: 'messages#send_new_broadcast_message'
-  ## End
-  # Messages
-  get 'get_inbox', to: 'messages#get_inbox'
+  
+  # Devise
   devise_for :users
   devise_scope :user do
     root to: "devise/sessions#new"

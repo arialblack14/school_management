@@ -7,8 +7,8 @@ class TeacherSentbox extends React.Component {
       <div>
         {this.props.sentbox.map(function(element) {
               return <TeacherMessageListItem 
-                      key={element.message.id} 
-                      message={element.message}
+                      key={element.id} 
+                      conversation={element}
                       />
             }, this)}
         <hr />

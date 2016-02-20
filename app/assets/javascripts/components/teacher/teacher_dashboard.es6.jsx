@@ -25,6 +25,10 @@ class TeacherDashboard extends React.Component {
       .done(function(result) {
         this.setState({inbox: result.messages})
       }.bind(this));
+    $.get('/get_sentbox')
+      .done(function(result) {
+        this.setState({sentbox: result.messages})
+      }.bind(this));
   }
   render() {
     let activeTab, secondTab;

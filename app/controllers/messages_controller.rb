@@ -4,6 +4,11 @@ class MessagesController < ApplicationController
     inbox = current_user.mailbox.inbox
     render json: inbox
   end
+
+  def get_sentbox
+    sentbox = current_user.mailbox.sentbox
+    render json: sentbox
+  end
   
   def reply_to_message
     body = conversation_params[:body]
