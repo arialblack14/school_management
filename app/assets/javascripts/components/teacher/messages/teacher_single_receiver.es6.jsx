@@ -11,8 +11,7 @@ class TeacherSingleReceiver extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    $.post( "/send_new_message", { conversation: {sender_id: this.props.currentUserId,
-                                                  receiver_id: this.state.receiver,
+    $.post( "/send_new_message", { conversation: {receiver_id: this.state.receiver,
                                                   subject: this.props.subject,
                                                   body: this.props.body}})
       .done(function( data ) {

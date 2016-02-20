@@ -13,21 +13,19 @@ class MessagesController < ApplicationController
   def reply_to_message
     body = conversation_params[:body]
     conversation = Mailboxer::Conversation.find(conversation_params[:conversation_id])
-    current_user.reply_to_conversation(conversation, body);
-    render json: conversation
+    current_user.reply_to_conversation(conversation, body)
+    render nothing: true
   end
 
   def send_new_message
     body = conversation_params[:body]
     subject = conversation_params[:subject]
-    sender_id = conversation_params[:sender_id]
     receiver_id = conversation_params[:receiver_id]
 
-    sender = User.find(sender_id)
     receiver = User.find(receiver_id)
 
-    sender.send_message(receiver, body, subject)
-    render json: { its: "DONE!" }
+    current_user.send_message(receiver, body, subject)
+    render nothing: true
   end
 
   def send_new_broadcast_message
