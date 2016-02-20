@@ -1,12 +1,23 @@
 class TeacherMessages extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {activeTab: 'inbox'};
+    this.state = {activeTab: 'inbox', inbox: this.props.inbox, sentbox: this.props.sentbox};
     this.changeActiveTab = this.changeActiveTab.bind(this);
+    this.refetchMessages = this.refetchMessages.bind(this);
   }
   changeActiveTab(activeTab) {
     let newState = activeTab.currentTarget.id;
     this.setState({activeTab: newState});
+  }
+  refetchMessages() {
+    $.get('/get_inbox')
+      .done(function(result) {
+        this.setState({inbox: result.messages})
+      }.bind(this));
+    $.get('/get_sentbox')
+      .done(function(result) {
+        this.setState({sentbox: result.messages})
+      }.bind(this));
   }
   componentDidMount() {
     $.get("/get_users").done(function(data) {
@@ -17,10 +28,10 @@ class TeacherMessages extends React.Component {
     let activeTab;
     switch(this.state.activeTab) {
       case 'inbox':
-        activeTab = <TeacherInbox inbox={this.props.inbox}/>;
+        activeTab = <TeacherInbox inbox={this.state.inbox} getMessages={this.refetchMessages}/>;
         break;
       case 'sentbox':
-        activeTab = <TeacherSentbox sentbox={this.props.sentbox}/>;
+        activeTab = <TeacherSentbox sentbox={this.state.sentbox} getMessages={this.refetchMessages}/>;
         break;
       case 'new-message':
         activeTab = <TeacherNewMessage currentUserId={this.props.currentUserId}users={this.state.users}/>

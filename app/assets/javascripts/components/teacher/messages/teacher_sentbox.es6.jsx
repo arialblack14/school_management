@@ -9,6 +9,7 @@ class TeacherSentbox extends React.Component {
               return <TeacherMessageListItem 
                       key={element.id} 
                       conversation={element}
+                      getMessages={this.props.getMessages}
                       />
             }, this)}
         <hr />

@@ -8,7 +8,9 @@ class TeacherInbox extends React.Component {
         {this.props.inbox.map(function(element) {
               return <TeacherMessageListItem 
                       key={element.id} 
-                      conversation={element}/>
+                      conversation={element}
+                      getMessages={this.props.getMessages}
+                      />
             }, this)}
         <hr />
       </div>
